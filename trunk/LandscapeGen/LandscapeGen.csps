@@ -1,0 +1,94 @@
+<SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+<SOAP-ENV:Body>
+<a1:Solution id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/at.jku.ssw.ProfIt.Components/at.jku.ssw.ProfIt.Components%2C%20Version%3D1.0.1759.21575%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<name id="ref-3">LandscapeGen</name>
+<projects href="#ref-4"/>
+<startProject href="#ref-5"/>
+<rootPath id="ref-6">C:\Documents and Settings\hslbco\My Documents\Visual Studio Projects\LandscapeGen</rootPath>
+</a1:Solution>
+<a2:ArrayList id="ref-4" xmlns:a2="http://schemas.microsoft.com/clr/ns/System.Collections">
+<_items href="#ref-7"/>
+<_size>1</_size>
+<_version>1</_version>
+</a2:ArrayList>
+<a1:Project id="ref-5" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/at.jku.ssw.ProfIt.Components/at.jku.ssw.ProfIt.Components%2C%20Version%3D1.0.1759.21575%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<name href="#ref-3"/>
+<dir id="ref-8"></dir>
+<outputDirectory id="ref-9">bin/Profiled</outputDirectory>
+<startParameters xsi:null="1"/>
+<references href="#ref-10"/>
+<externalId xsi:null="1"/>
+<externalFileName xsi:null="1"/>
+<askForStartParameters>true</askForStartParameters>
+<workingDirectory href="#ref-8"/>
+<workingDir>Root</workingDir>
+<executeInOwnWindow>false</executeInOwnWindow>
+<outputType>WinExe</outputType>
+<solution href="#ref-1"/>
+<files href="#ref-11"/>
+</a1:Project>
+<SOAP-ENC:Array id="ref-7" SOAP-ENC:arrayType="xsd:anyType[16]">
+<item href="#ref-5"/>
+</SOAP-ENC:Array>
+<a2:ArrayList id="ref-10" xmlns:a2="http://schemas.microsoft.com/clr/ns/System.Collections">
+<_items href="#ref-12"/>
+<_size>5</_size>
+<_version>1</_version>
+</a2:ArrayList>
+<a2:ArrayList id="ref-11" xmlns:a2="http://schemas.microsoft.com/clr/ns/System.Collections">
+<_items href="#ref-13"/>
+<_size>3</_size>
+<_version>3</_version>
+</a2:ArrayList>
+<SOAP-ENC:Array id="ref-12" SOAP-ENC:arrayType="xsd:anyType[16]">
+<item href="#ref-14"/>
+<item href="#ref-15"/>
+<item href="#ref-16"/>
+<item href="#ref-17"/>
+<item href="#ref-18"/>
+</SOAP-ENC:Array>
+<SOAP-ENC:Array id="ref-13" SOAP-ENC:arrayType="xsd:anyType[16]">
+<item href="#ref-19"/>
+<item href="#ref-20"/>
+<item href="#ref-21"/>
+</SOAP-ENC:Array>
+<a1:AssemblyReference id="ref-14" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/at.jku.ssw.ProfIt.Components/at.jku.ssw.ProfIt.Components%2C%20Version%3D1.0.1759.21575%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<fileName id="ref-22">C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.dll</fileName>
+<name id="ref-23">System</name>
+</a1:AssemblyReference>
+<a1:AssemblyReference id="ref-15" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/at.jku.ssw.ProfIt.Components/at.jku.ssw.ProfIt.Components%2C%20Version%3D1.0.1759.21575%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<fileName id="ref-24">C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Data.dll</fileName>
+<name id="ref-25">System.Data</name>
+</a1:AssemblyReference>
+<a1:AssemblyReference id="ref-16" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/at.jku.ssw.ProfIt.Components/at.jku.ssw.ProfIt.Components%2C%20Version%3D1.0.1759.21575%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<fileName id="ref-26">C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Drawing.dll</fileName>
+<name id="ref-27">System.Drawing</name>
+</a1:AssemblyReference>
+<a1:AssemblyReference id="ref-17" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/at.jku.ssw.ProfIt.Components/at.jku.ssw.ProfIt.Components%2C%20Version%3D1.0.1759.21575%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<fileName id="ref-28">C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Windows.Forms.dll</fileName>
+<name id="ref-29">System.Windows.Forms</name>
+</a1:AssemblyReference>
+<a1:AssemblyReference id="ref-18" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/at.jku.ssw.ProfIt.Components/at.jku.ssw.ProfIt.Components%2C%20Version%3D1.0.1759.21575%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<fileName id="ref-30">C:\WINDOWS\Microsoft.NET\Framework\v1.1.4322\System.Xml.dll</fileName>
+<name id="ref-31">System.Xml</name>
+</a1:AssemblyReference>
+<a1:SourceFile id="ref-19" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/at.jku.ssw.ProfIt.Components/at.jku.ssw.ProfIt.Components%2C%20Version%3D1.0.1759.21575%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<filename id="ref-32">AssemblyInfo.cs</filename>
+<buildAction>Compile</buildAction>
+<profile>true</profile>
+<project href="#ref-5"/>
+</a1:SourceFile>
+<a1:SourceFile id="ref-20" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/at.jku.ssw.ProfIt.Components/at.jku.ssw.ProfIt.Components%2C%20Version%3D1.0.1759.21575%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<filename id="ref-33">FormMain.cs</filename>
+<buildAction>Compile</buildAction>
+<profile>true</profile>
+<project href="#ref-5"/>
+</a1:SourceFile>
+<a1:SourceFile id="ref-21" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/at.jku.ssw.ProfIt.Components/at.jku.ssw.ProfIt.Components%2C%20Version%3D1.0.1759.21575%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<filename id="ref-34">GenerateLandscape.cs</filename>
+<buildAction>Compile</buildAction>
+<profile>true</profile>
+<project href="#ref-5"/>
+</a1:SourceFile>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
