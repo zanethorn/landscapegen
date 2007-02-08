@@ -280,11 +280,16 @@ namespace LandscapeGen
 		}
 
 		private void Render() {
+			const float UPPERLIMIT = 10000;
+			const float LOWERLIMIT = 0;
+
 			if (_ResultGrid != null) {
-				Normalize objNormal = new Normalize();
+				Normalize objNormal = new Normalize(UPPERLIMIT, LOWERLIMIT);
 				float [,] scaledGrid = objNormal.Process(_ResultGrid);
 
 				Render2D r2d = new Render2D();
+				r2d.BoundsMax = UPPERLIMIT;
+				r2d.BoundsMin = LOWERLIMIT;
 				switch (this.cbRenderStyle.SelectedIndex) {
 					case 0:
 						this.pictureBox1.Image = r2d.RenderRainbow(scaledGrid);
