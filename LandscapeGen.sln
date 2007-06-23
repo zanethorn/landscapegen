@@ -1,29 +1,25 @@
-Microsoft Visual Studio Solution File, Format Version 8.00
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual C# Express 2005
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LandscapeGenCore", "LandscapeGenCore\LandscapeGenCore.csproj", "{A2AD292E-D58C-438D-8690-BB5AAF87B281}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LandscapeGen", "LandscapeGen\LandscapeGen.csproj", "{39014D20-1AA9-4BFD-BB2F-F5A702DA09D4}"
-	ProjectSection(ProjectDependencies) = postProject
-	EndProjectSection
 EndProject
 Global
-	GlobalSection(SolutionConfiguration) = preSolution
-		Debug = Debug
-		Release = Release
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(ProjectConfiguration) = postSolution
-		{A2AD292E-D58C-438D-8690-BB5AAF87B281}.Debug.ActiveCfg = Debug|.NET
-		{A2AD292E-D58C-438D-8690-BB5AAF87B281}.Debug.Build.0 = Debug|.NET
-		{A2AD292E-D58C-438D-8690-BB5AAF87B281}.Release.ActiveCfg = Release|.NET
-		{A2AD292E-D58C-438D-8690-BB5AAF87B281}.Release.Build.0 = Release|.NET
-		{39014D20-1AA9-4BFD-BB2F-F5A702DA09D4}.Debug.ActiveCfg = Debug|.NET
-		{39014D20-1AA9-4BFD-BB2F-F5A702DA09D4}.Debug.Build.0 = Debug|.NET
-		{39014D20-1AA9-4BFD-BB2F-F5A702DA09D4}.Release.ActiveCfg = Release|.NET
-		{39014D20-1AA9-4BFD-BB2F-F5A702DA09D4}.Release.Build.0 = Release|.NET
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A2AD292E-D58C-438D-8690-BB5AAF87B281}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2AD292E-D58C-438D-8690-BB5AAF87B281}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2AD292E-D58C-438D-8690-BB5AAF87B281}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2AD292E-D58C-438D-8690-BB5AAF87B281}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39014D20-1AA9-4BFD-BB2F-F5A702DA09D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39014D20-1AA9-4BFD-BB2F-F5A702DA09D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39014D20-1AA9-4BFD-BB2F-F5A702DA09D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39014D20-1AA9-4BFD-BB2F-F5A702DA09D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-	EndGlobalSection
-	GlobalSection(ExtensibilityAddIns) = postSolution
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal
