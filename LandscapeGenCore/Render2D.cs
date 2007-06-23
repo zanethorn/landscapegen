@@ -42,8 +42,7 @@ namespace LandscapeGenCore
 		private Color ScaleGreyscale(float val) {
 			int grey;
 			float newVal;
-			float range;
-			range = _boundsMax - _boundsMin;
+			float range = _boundsMax - _boundsMin;
 
 			newVal = val;
 			newVal = 255/range*newVal;
@@ -53,18 +52,32 @@ namespace LandscapeGenCore
 		}
 
 
+        // TODO: This isn't correct :( It's not taking _boundsMin into account and it can't cope with negitive values
 		private Color ScaleTerran(float val, TerranValues vals) {
-			if (val <= float.MaxValue*vals.waterLevel) {
+            float range = _boundsMax - _boundsMin;
+            
+			if (val <= _boundsMax * vals.waterLevel)
+            {
 				return vals.waterColor;
-			} else if (val <= float.MaxValue*vals.beachLevel) {
+            }
+            else if (val <= _boundsMax * vals.beachLevel)
+            {
 				return vals.beachColor;
-			} else if (val <= float.MaxValue*vals.grassLevel) {
+            }
+            else if (val <= _boundsMax * vals.grassLevel)
+            {
 				return vals.grassColor;
-			} else if (val <= float.MaxValue*vals.moutainLevel) {
+            }
+            else if (val <= _boundsMax * vals.moutainLevel)
+            {
 				return vals.moutainColor;
-			} else if (val <= float.MaxValue*vals.snowLevel) {
+            }
+            else if (val <= _boundsMax * vals.snowLevel)
+            {
 				return vals.snowColor;
-			} else {
+			}
+            else 
+            {
 				return Color.Red;
 			}
 		}
@@ -74,36 +87,43 @@ namespace LandscapeGenCore
 			int red;
 			int green;
 			int blue;
-			double bias;
+            float bias;
+            float range = _boundsMax - _boundsMin;
+            float midPoint = range / 2F;
 
-			/* float MinValue: 100% color1
-			 * Inbetween: color1 -> color2
-			 * float midPoint: 100% color2
-			 * Inbetween: color2 -> color3
-			 * float MaxValue: = 100% color3
-			 * */
+            /* _boundsMin: 100% color1
+             * Inbetween: color1 -> color2
+             * float midPoint: 100% color2
+             * Inbetween: color2 -> color3
+             * _boundsMax: = 100% color3
+             * */
 
-			double midPoint = (float.MaxValue - float.MinValue) /2F;
-
-			if (val == float.MinValue) {
+            if (val == _boundsMin)
+            {
 				// 100% Color 1
 				red = color1.R;
 				green = color1.G;
 				blue = color1.B;
 
-			} else if (val == midPoint) {
+			}
+            else if (val == midPoint)
+            {
 				// 100% Color 2
 				red = color2.R;
 				green = color2.G;
 				blue = color2.B;
 
-			} else if (val == float.MaxValue) {
+            }
+            else if (val == _boundsMax)
+            {
 					// 100% Color 3
 					red = color3.R;
 					green = color3.G;
 					blue = color3.B;
 
-			} else if (val < midPoint) {
+			}
+            else if (val < midPoint) 
+            {
 				// Blend of Color 1 and 2
 				bias = val / midPoint;
 
@@ -112,16 +132,20 @@ namespace LandscapeGenCore
 				green = (int)Math.Round(Common.Linear_Interpolate(color1.G, color2.G, bias));
 				blue = (int)Math.Round(Common.Linear_Interpolate(color1.B, color2.B, bias));
 
-			} else if (val < float.MaxValue) {
+            }
+            else if (val < _boundsMax)
+            {
 				// Blend of Color 2 and 3
-				bias = (val-midPoint) / (float.MaxValue-midPoint);
+                bias = (val - midPoint) / (_boundsMax - midPoint);
 
 				// Blend between the two colours
 				red = (int)Math.Round(Common.Linear_Interpolate(color2.R, color3.R, bias));
 				green = (int)Math.Round(Common.Linear_Interpolate(color2.G, color3.G, bias));
 				blue = (int)Math.Round(Common.Linear_Interpolate(color2.B, color3.B, bias));
 
-			} else {
+			} 
+            else
+            {
 				throw new Exception("Out of range :(");
 			}
 			return Color.FromArgb(red, green, blue);
