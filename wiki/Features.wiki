@@ -4,19 +4,19 @@
 
 Noise routines are core behind the generator, they generate the pseudo random data that makes up the landscape.
 
-* Perlin
-* Stochastic Koch curve
+ * Perlin
+ * Stochastic Koch curve
 
 = Renders =
 
 The renders creates a 2D image from the Noise Routines. If you are exporting for use in other application then Greyscale is probably the render you want.
 
-* Green Plasma
-* Greyscale
-* Clouds
-* Fire 1
-* Fire 2
-* Terran
+ * Green Plasma
+ * Greyscale
+ * Clouds
+ * Fire 1
+ * Fire 2
+ * Terran
 
 = Output Formats =
 
