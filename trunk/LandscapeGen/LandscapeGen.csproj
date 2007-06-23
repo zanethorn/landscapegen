@@ -19,8 +19,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>LandscapeGen</RootNamespace>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-    <StartupObject>
-    </StartupObject>
+    <StartupObject>LandscapeGen.FormMain</StartupObject>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
