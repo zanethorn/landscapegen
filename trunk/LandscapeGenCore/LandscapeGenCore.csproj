@@ -88,6 +88,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ThreeDSpace.cs" />
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -116,6 +117,7 @@
     <Compile Include="Render2D.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Simple3d.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
