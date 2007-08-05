@@ -423,15 +423,18 @@ namespace LandscapeGen
         {
             ThreeDSpace tds = new ThreeDSpace();
 
-            tds.viewpoint = new ThreeDSpace.Point3D(25, 10, -100);
-            tds.screen = new ThreeDSpace.Point3D(0, 0, 0);
+            tds.viewpoint = new ThreeDSpace.Point3D(-100, -100, -100, Color.Transparent);
+            tds.screen = new ThreeDSpace.Point3D(0, 0, 0, Color.Transparent);
 
-            //tds.pointObjects.Add(new ThreeDSpace.CubeObject(50));
+            //tds.pointObjects.Add(new ThreeDSpace.CubeObject(50, Color.PowderBlue));
 
-            ThreeDSpace.MeshObject aMesh = new ThreeDSpace.MeshObject(4, 3);
-            aMesh.Scale = 50;
+            ThreeDSpace.MeshObject aMesh = new ThreeDSpace.MeshObject(4, 3, Color.Orange);
+            aMesh.Scale = 32;
+            tds.pointObjects.Add(aMesh); 
 
-            tds.pointObjects.Add(aMesh);
+            tds.pointObjects.Add(new ThreeDSpace.LineObject(new ThreeDSpace.Point3D(-50, 0, 0, Color.Red), new ThreeDSpace.Point3D(50, 0, 0, Color.Red)));
+            tds.pointObjects.Add(new ThreeDSpace.LineObject(new ThreeDSpace.Point3D(0, -50, 0, Color.Green), new ThreeDSpace.Point3D(0, 50, 0, Color.Green)));
+            tds.pointObjects.Add(new ThreeDSpace.LineObject(new ThreeDSpace.Point3D(0, 0, -50, Color.Blue), new ThreeDSpace.Point3D(0, 0, 50, Color.Blue)));
 
             Bitmap bmp = new Bitmap(200, 200);
 
@@ -458,7 +461,7 @@ namespace LandscapeGen
                     PointF end = tds.Render(l.End);
                     start += sz;
                     end += sz;
-                    g.DrawLine(Pens.Black, start, end);
+                    g.DrawLine(new Pen(l.Start.color, 1), start, end);
 
                 }
             }
@@ -468,7 +471,10 @@ namespace LandscapeGen
                 foreach (ThreeDSpace.Point3D p in po.Points) {
                     PointF p2d = tds.Render(p);
                     p2d += sz;
-                    bmp.SetPixel((int)Math.Round(p2d.X), (int)Math.Round(p2d.Y), Color.Red);
+                    if ((p2d.X > 0) && (p2d.X < bmp.Width) && (p2d.Y > 0) && (p2d.Y < bmp.Height))
+                    {
+                        bmp.SetPixel((int)Math.Round(p2d.X), (int)Math.Round(p2d.Y), p.color);
+                    }
                 }
             }
 

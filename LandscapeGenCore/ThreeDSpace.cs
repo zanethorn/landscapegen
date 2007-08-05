@@ -10,16 +10,18 @@ namespace LandscapeGenCore
     {
         public struct Point3D
         {
-            public Point3D(float x, float y, float z)
+            public Point3D(float x, float y, float z, Color c)
             {
                 X = x;
                 Y = y;
                 Z = z;
+                color = c;
             }
 
             public float X;
             public float Y;
             public float Z;
+            public Color color;
         }
 
         public struct Lines3D
@@ -57,23 +59,24 @@ namespace LandscapeGenCore
             private Point3D[] _points = new Point3D[8];
             private Lines3D[] _lines = new Lines3D[12];
 
-            public RectangleObject(float width, float height, float depth) {
-                Setup(width, height, depth);
+            public RectangleObject(float width, float height, float depth, Color c)
+            {
+                Setup(width, height, depth, c);
             }
 
-            public void Setup(float width, float height, float depth)
+            public void Setup(float width, float height, float depth, Color c)
             {
                 // Points - Front face
-                _points[0] = new Point3D(0, 0, 0); //F-TL
-                _points[1] = new Point3D(width, 0, 0); //F-TR
-                _points[2] = new Point3D(0, height, 0); //F-BL
-                _points[3] = new Point3D(width, height, 0); //F-BR
+                _points[0] = new Point3D(0, 0, 0, c); //F-TL
+                _points[1] = new Point3D(width, 0, 0, c); //F-TR
+                _points[2] = new Point3D(0, height, 0, c); //F-BL
+                _points[3] = new Point3D(width, height, 0, c); //F-BR
 
                 // Points - Back face
-                _points[4] = new Point3D(0, 0, depth); //B-TL
-                _points[5] = new Point3D(width, 0, depth); //B-TR
-                _points[6] = new Point3D(0, height, depth); //B-BL
-                _points[7] = new Point3D(width, height, depth); //B-BR
+                _points[4] = new Point3D(0, 0, depth, c); //B-TL
+                _points[5] = new Point3D(width, 0, depth, c); //B-TR
+                _points[6] = new Point3D(0, height, depth, c); //B-BL
+                _points[7] = new Point3D(width, height, depth, c); //B-BR
 
                 // Lines - Front face
                 _lines[0] = new Lines3D(_points[0], _points[1]);    // F-T
@@ -126,23 +129,48 @@ namespace LandscapeGenCore
 
         public class CubeObject : RectangleObject
         {
-            public CubeObject(float width): base(width,width,width) {
+            public CubeObject(float width, Color c): base(width,width,width,c) {
             }
 
-            public void Setup(float width) {
-                base.Setup(width,width, width);
+            public void Setup(float width, Color c) {
+                base.Setup(width,width, width, c);
             }
         }
 
         public class LineObject : IPointObject
         {
+            private Point3D _from;
+            private Point3D _to;
+
+            public LineObject(Point3D from, Point3D to)
+            {
+                _from = from;
+                _to = to;
+            }
+
+            private Point3D[] GetPoints()
+            {
+                Point3D[] ret = new Point3D[2];
+                ret[0] = _from;
+                ret[1] = _to;
+                return ret;
+            }
+
+            private Lines3D[] GetLines()
+            {
+                Lines3D[] ret = new Lines3D[1];
+                ret[0] = new Lines3D(_from, _to);
+                return ret;
+            }
+
+
             #region IPointObject Members
 
             Point3D[] IPointObject.Points
             {
                 get
                 {
-                    throw new Exception("The method or operation is not implemented.");
+                    return GetPoints();
                 }
                 set
                 {
@@ -154,7 +182,7 @@ namespace LandscapeGenCore
             {
                 get
                 {
-                    throw new Exception("The method or operation is not implemented.");
+                    return GetLines();
                 }
                 set
                 {
@@ -171,6 +199,7 @@ namespace LandscapeGenCore
             //private Lines3D[] _lines;
 
             private float[,] _mesh;
+            private Color _meshColor;
             private float _scale = 1;
 
             public float Scale
@@ -180,13 +209,14 @@ namespace LandscapeGenCore
             }
                 
 
-            public MeshObject(int meshX, int meshY)
+            public MeshObject(int meshX, int meshY, Color c)
             {
-                Setup(meshX, meshY);
+                Setup(meshX, meshY, c);
             }
 
-            public void Setup(int meshX, int meshY)
+            public void Setup(int meshX, int meshY, Color c)
             {
+                _meshColor = c;
                 _mesh = new float[meshX, meshY];
 
 
@@ -204,7 +234,11 @@ namespace LandscapeGenCore
                 {
                     for (int j = 0; j < y; j++)
                     {
-                        p[c] = new Point3D(spaceX * i * _scale, spaceY * j * _scale, _mesh[i, j] * _scale);
+                        p[c] = new Point3D(
+                                spaceX * i  * _scale,
+                                spaceY * j  * _scale,
+                                _mesh[i, j] * _scale, 
+                                _meshColor);
                         c++;
                     }
                 }
@@ -271,12 +305,13 @@ namespace LandscapeGenCore
 
         public PointF Render(Point3D p)
         {
+            // TODO: This logic can not cope with points behind the camera!! It can also not look backwards
             //http://www.codeproject.com/cpp/3demo.asp
             PointF r = new Point();
             Point3D e = viewpoint;
             Point3D s = screen;
 
-            r.Y = ((p.Y - e.Y) * (s.Z - e.Z) / (p.Z - e.Z)) + e.X;
+            r.Y = ((p.Y - e.Y) * (s.Z - e.Z) / (p.Z - e.Z)) + e.Y;
             r.X = ((p.X - e.X) * (s.Z - e.Z) / (p.Z - e.Z)) + e.X;
 
             return r;
