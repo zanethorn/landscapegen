@@ -195,9 +195,6 @@ namespace LandscapeGenCore
 
         public class MeshObject : IPointObject
         {
-            //private Point3D[] _points;
-            //private Lines3D[] _lines;
-
             private float[,] _mesh;
             private Color _meshColor;
             private float _scale = 1;
@@ -249,8 +246,47 @@ namespace LandscapeGenCore
             private Lines3D[] GetLines() {
                 int x = _mesh.GetLength(0);
                 int y = _mesh.GetLength(1);
-                // this is the simplified version of (x-1)y + (y-1)x
-                Lines3D[] l = new Lines3D[2 * x * y - x - y];
+
+                // Lines is based of the points
+                Point3D[] p = GetPoints();
+
+                // Create line object
+                // TODO: this can be simplifed
+                Lines3D[] l = new Lines3D[((x-1) * y) + (x* (y-1))];
+
+                // Populate values in line objects, the lines will look somthing like so
+                /*   *-*-*-*
+                 *   | | | |
+                 *   *-*-*-*
+                 *   | | | |
+                 *   *-*-*-*
+                 *   | | | |
+                 *   *-*-*-*
+                 * */
+                int linePos = 0;
+                for (int idxY=0; idxY<y; idxY++)
+                {
+
+                    // Horz Line  (count = x-1)
+                    for (int idxX = 0; idxX < x - 1; idxX++)
+                    {
+                        l[linePos].Start = p[(idxY*x) +idxX];
+                        l[linePos].End = p[(idxY*x) +idxX +1];  // Point to right
+                        linePos++;
+                    }
+
+                    // Only add Vert lines if not on last row
+                    if (idxY < y-1)
+                    {
+                        // Vert Line  (count = x)
+                        for (int idxX = 0; idxX < x; idxX++)
+                        {
+                            l[linePos].Start = p[(idxY * x) + idxX];    // Same point as Horz line
+                            l[linePos].End = p[((idxY + 1) * x) + idxX];  // Point down
+                            linePos++;
+                        }
+                    }
+                }
 
                 return l;
             }
@@ -306,13 +342,17 @@ namespace LandscapeGenCore
         public PointF Render(Point3D p)
         {
             // TODO: This logic can not cope with points behind the camera!! It can also not look backwards
+            // Note, I'm not sure about the formular used :( Need to check this cause damn thing doesn't work that well
             //http://www.codeproject.com/cpp/3demo.asp
             PointF r = new Point();
             Point3D e = viewpoint;
             Point3D s = screen;
 
-            r.Y = ((p.Y - e.Y) * (s.Z - e.Z) / (p.Z - e.Z)) + e.Y;
-            r.X = ((p.X - e.X) * (s.Z - e.Z) / (p.Z - e.Z)) + e.X;
+            /*r.Y = ((p.Y - e.Y) * (s.Z - e.Z) / (p.Z - e.Z)) + e.Y;
+            r.X = ((p.X - e.X) * (s.Z - e.Z) / (p.Z - e.Z)) + e.X;*/
+
+            r.Y = ((p.Y - e.Y) * s.Z / (p.Z - e.Z));
+            r.X = ((p.X - e.X) * s.Z / (p.Z - e.Z));
 
             return r;
         }
