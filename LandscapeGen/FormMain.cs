@@ -76,6 +76,8 @@ namespace LandscapeGen
 		private void InitializeComponent()
 		{
             this.panelSideBar = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.propertyGrid2 = new System.Windows.Forms.PropertyGrid();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.buttonRandomGenerate = new System.Windows.Forms.Button();
@@ -88,8 +90,6 @@ namespace LandscapeGen
             this.panelViewArea = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.panelSideBar.SuspendLayout();
             this.panelViewArea.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -113,6 +113,26 @@ namespace LandscapeGen
             this.panelSideBar.Size = new System.Drawing.Size(248, 565);
             this.panelSideBar.TabIndex = 0;
             this.panelSideBar.Paint += new System.Windows.Forms.PaintEventHandler(this.panelSideBar_Paint);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(136, 512);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 22;
+            this.button2.Text = "3d Test";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(24, 512);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 21;
+            this.button1.Text = "3d map";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // propertyGrid2
             // 
@@ -234,26 +254,6 @@ namespace LandscapeGen
             // 
             this.saveFileDialog1.DefaultExt = "png";
             this.saveFileDialog1.Title = "Save Image";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(24, 512);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 21;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(136, 512);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 22;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // FormMain
             // 
@@ -431,10 +431,13 @@ namespace LandscapeGen
             ThreeDSpace.MeshObject aMesh = new ThreeDSpace.MeshObject(4, 3, Color.Orange);
             aMesh.Scale = 32;
             tds.pointObjects.Add(aMesh); 
-
             tds.pointObjects.Add(new ThreeDSpace.LineObject(new ThreeDSpace.Point3D(-50, 0, 0, Color.Red), new ThreeDSpace.Point3D(50, 0, 0, Color.Red)));
             tds.pointObjects.Add(new ThreeDSpace.LineObject(new ThreeDSpace.Point3D(0, -50, 0, Color.Green), new ThreeDSpace.Point3D(0, 50, 0, Color.Green)));
             tds.pointObjects.Add(new ThreeDSpace.LineObject(new ThreeDSpace.Point3D(0, 0, -50, Color.Blue), new ThreeDSpace.Point3D(0, 0, 50, Color.Blue)));
+
+            //Lines
+
+            // Points
 
             Bitmap bmp = new Bitmap(200, 200);
 
@@ -443,9 +446,9 @@ namespace LandscapeGen
             SizeF sz = new SizeF(offsetX, offsetY);
 
             System.Drawing.Graphics g = Graphics.FromImage(bmp);
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             //g.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
             //g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             //g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
 
             g.Clear(Color.White);
@@ -477,6 +480,8 @@ namespace LandscapeGen
                     }
                 }
             }
+
+            //foreach (ThreeDSpace.IPointObject po 
 
             g.Dispose();
             g = null;
